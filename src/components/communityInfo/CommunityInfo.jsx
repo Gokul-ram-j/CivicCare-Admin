@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth, firestore } from "../firebase/firebase";
 import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { FaUsers } from "react-icons/fa"; // Icon for UI enhancement
-import styles from "./CommunityInfo.module.css";
+import styles from "./communityInfo.module.css";
 import defaultProfile from '../../assets/default-profile.png'
 function CommunityInfo() {
   const [communityData, setCommunityData] = useState(null);
