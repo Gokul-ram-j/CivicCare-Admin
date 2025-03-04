@@ -1,0 +1,120 @@
+/* Navbar Container */
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+  }
+  
+  /* Logo */
+  .logo h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Desktop Navigation */
+  .navLinks {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navItem {
+    text-decoration: none;
+    font-size: 28px;
+    transition: 0.3s;
+  }
+  
+  .navItem:hover {
+    color: #2c282851;
+  }
+  
+  /* Sign Out Button */
+  .signOutBtn {
+    background-color: red;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  
+  .signOutBtn:hover {
+    background-color: darkred;
+  }
+  
+  /* Mobile Menu Button */
+  .menuBtn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Mobile Dropdown Menu */
+  .mobileMenu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background: white;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  .showMenu {
+    display: flex;
+  }
+  
+  .mobileNavItem {
+    padding: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+  }
+  
+  .mobileNavItem:hover {
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+  }
+  
+  /* Mobile Sign Out Button */
+  .signOutBtnMobile {
+    background-color: red;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-top: 10px;
+  }
+  
+  .signOutBtnMobile:hover {
+    background-color: darkred;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navLinks,
+    .signOutBtn {
+      display: none;
+    }
+  
+    .menuBtn {
+      display: block;
+    }
+  }
+  

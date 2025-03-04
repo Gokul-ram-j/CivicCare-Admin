@@ -1,0 +1,158 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    margin: 0;
+    padding: 10px;
+    width: 95vw;
+    margin: auto;
+    min-height: 100vh;
+    box-sizing: content-box;
+}
+
+.applicationContainerWrapper {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  font-family: "Arial", sans-serif;
+  margin: 10px auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.category, .desc, .sender, .dateTime {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.sender span {
+  font-weight: bold;
+}
+
+.dateTime {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+/* Status Container */
+.statusContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+/* Status Buttons */
+.statusButton {
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.statusButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.statusButton.active {
+  border: 2px solid #000;
+}
+
+.statusButton.strikethrough {
+  text-decoration: line-through;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Status Colors */
+.statusButton:nth-child(1) { background: #f44336; color: white; } /* Rejected */
+.statusButton:nth-child(2) { background: #3c5bf7; color: white; } /* Pending */
+.statusButton:nth-child(3) { background: #ff9800; color: white; } /* Mark as Review */
+.statusButton:nth-child(4) { background: #4caf50; color: white; } /* In Progress */
+.statusButton:nth-child(5) { background: #008000; color: white; } /* Resolved */
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1000;
+}
+
+.modal p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.confirmButton, .cancelButton {
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.confirmButton {
+  background: #4caf50;
+  color: white;
+}
+
+.cancelButton {
+  background: #f44336;
+  color: white;
+}
+
+/* Attachment Container */
+.attachmentContainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 5px;
+  flex-direction: row;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.attachment {
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.emptyContainer{
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../assets/no-data.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  box-sizing: content-box;
+}

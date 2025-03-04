@@ -1,0 +1,141 @@
+/* Overall container styling */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Main card container */
+.card {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header with icon */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.icon {
+  font-size: 26px;
+  color: #007bff;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Community Name */
+.communityName {
+  font-size: 20px;
+  font-weight: 600;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  margin-top: 20px;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Members List Grid */
+.membersList {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .membersList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Member Card */
+.memberCard {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  background: #ffffff;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 12px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.memberCard:hover {
+  transform: translateY(-3px);
+}
+
+/* Member Image */
+.memberImage {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+  object-fit: cover;
+  margin: auto ;
+  margin-right: 12px;
+}
+
+/* Member Info */
+.memberInfo {
+  text-align: left;
+}
+
+.memberName {
+  font-weight: 700;
+  color: #333;
+  font-size: 16px;
+}
+
+.memberProfession {
+  font-size: 14px;
+  color: #555;
+  margin: 2px 0;
+}
+
+.memberAddress {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Loading text */
+.loading {
+  font-size: 16px;
+  color: #666;
+  margin-top: 20px;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
