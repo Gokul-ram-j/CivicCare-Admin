@@ -7,7 +7,7 @@ import defaultProfile from '../../assets/default-profile.png'
 function CommunityInfo() {
   const [communityData, setCommunityData] = useState(null);
   const [docId, setDocId] = useState(
-    auth.currentUser.email.match(/^admin(\w+)@/)[1].toLowerCase()
+    auth.currentUser.email.match(/^admin(\w+)@/)[1].charAt(0).toUpperCase() + auth.currentUser.email.match(/^admin(\w+)@/)[1].slice(1)
   );
   const [members, setMembers] = useState([]);
   const [membersDetails, setMembersDetails] = useState([]);

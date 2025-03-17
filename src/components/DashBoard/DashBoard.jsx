@@ -4,8 +4,8 @@ import { doc, onSnapshot,getDoc,updateDoc } from "firebase/firestore";
 import styles from "./dashBoard.module.css";
 function DashBoard() {
   const [communityData, setCommunityData] = useState(null);
-  const [docId, setDocId] = useState(auth.currentUser.email.match(/^admin(\w+)@/)[1].toLowerCase()); // Set the document ID you want to fetch
-  // console.log(adminAuth.currentUser.email.match(/^admin(\w+)@/)[1].toLowerCase())
+  const [docId, setDocId] = useState(auth.currentUser.email.match(/^admin(\w+)@/)[1].charAt(0).toUpperCase() + auth.currentUser.email.match(/^admin(\w+)@/)[1].slice(1));
+  console.log(docId,auth.currentUser.email)   //for checking
   useEffect(() => {
     if (!docId) return;
 
@@ -41,7 +41,6 @@ const EmptyContainer=()=>{
 const statuses = ["acknowledged", "inProgress", "resolved"];
 
 const ApplicationContainer = ({ info,docId }) => {
-  console.log("check here",docId)
   const [status, setStatus] = useState(info.status);
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
