@@ -49,7 +49,7 @@ const ApplicationContainer = ({ info,docId }) => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const communityRef = doc(firestore, "community", "kadayanallur");
+        const communityRef = doc(firestore, "community",docId );
         const communitySnap = await getDoc(communityRef);
 
         if (communitySnap.exists()) {
