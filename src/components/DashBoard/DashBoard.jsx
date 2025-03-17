@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { auth, firestore } from "../firebase/firebase";
-import { doc, onSnapshot,getDoc,updateDoc } from "firebase/firestore";
+import { doc, onSnapshot, getDoc, updateDoc } from "firebase/firestore";
 import styles from "./dashBoard.module.css";
 function DashBoard() {
   const [communityData, setCommunityData] = useState(null);
-  const [docId, setDocId] = useState(auth.currentUser.email.match(/^admin(\w+)@/)[1].charAt(0).toUpperCase() + auth.currentUser.email.match(/^admin(\w+)@/)[1].slice(1));
-  console.log(docId,auth.currentUser.email)   //for checking
+  const [docId, setDocId] = useState(
+    auth.currentUser.email
+      .match(/^admin(\w+)@/)[1]
+      .charAt(0)
+      .toUpperCase() + auth.currentUser.email.match(/^admin(\w+)@/)[1].slice(1)
+  );
+  console.log(docId, auth.currentUser.email); //for checking
   useEffect(() => {
     if (!docId) return;
 
@@ -24,23 +29,24 @@ function DashBoard() {
   }, [docId]);
   return (
     <div className={styles.container}>
-      {communityData?.application.length>0?communityData?.application.map((info, ind) => {
-        return <ApplicationContainer docId={docId} key={ind} info={info} />;
-      }):(<EmptyContainer/>)}
+      {communityData?.application.length > 0 ? (
+        communityData?.application.map((info, ind) => {
+          return <ApplicationContainer docId={docId} key={ind} info={info} />;
+        })
+      ) : (
+        <EmptyContainer />
+      )}
     </div>
   );
 }
 
-
-const EmptyContainer=()=>{
-  return <div className={styles.emptyContainer}>
-
-  </div>
-}
+const EmptyContainer = () => {
+  return <div className={styles.emptyContainer}></div>;
+};
 
 const statuses = ["acknowledged", "inProgress", "resolved"];
 
-const ApplicationContainer = ({ info,docId }) => {
+const ApplicationContainer = ({ info, docId }) => {
   const [status, setStatus] = useState(info.status);
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState(null);
@@ -49,12 +55,14 @@ const ApplicationContainer = ({ info,docId }) => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const communityRef = doc(firestore, "community",docId );
+        const communityRef = doc(firestore, "community", docId);
         const communitySnap = await getDoc(communityRef);
 
         if (communitySnap.exists()) {
           const applications = communitySnap.data().application || [];
-          const currentApp = applications.find((app) => app.applicationID === info.applicationID);
+          const currentApp = applications.find(
+            (app) => app.applicationID === info.applicationID
+          );
 
           if (currentApp) {
             setStatus(currentApp.status); // 🔥 Sync UI with Firestore status
@@ -73,7 +81,7 @@ const ApplicationContainer = ({ info,docId }) => {
     setShowConfirm(false);
 
     try {
-      const communityRef = doc(firestore, "community", "tenkasi");
+      const communityRef = doc(firestore, "community", docId);
       const communitySnap = await getDoc(communityRef);
 
       if (!communitySnap.exists()) {
@@ -85,7 +93,9 @@ const ApplicationContainer = ({ info,docId }) => {
 
       // 🔥 Update only the relevant application's status using applicationID
       const updatedApplications = applications.map((app) =>
-        app.applicationID === info.applicationID ? { ...app, status: selectedStatus } : app
+        app.applicationID === info.applicationID
+          ? { ...app, status: selectedStatus }
+          : app
       );
 
       await updateDoc(communityRef, { application: updatedApplications });
@@ -135,25 +145,41 @@ const ApplicationContainer = ({ info,docId }) => {
         {status === "rejected" && (
           <span className={styles.rejectedText}>Application Rejected</span>
         )}
-        {status !== "rejected" && status !== "submitted" &&
+        {status !== "rejected" &&
+          status !== "submitted" &&
           statuses.map((s) => (
             <button
               key={s}
-              className={`${styles.statusButton} ${status === s ? styles.active : ""} ${statuses.indexOf(s) < statuses.indexOf(status) ? styles.strikethrough : ""}`}
+              className={`${styles.statusButton} ${
+                status === s ? styles.active : ""
+              } ${
+                statuses.indexOf(s) < statuses.indexOf(status)
+                  ? styles.strikethrough
+                  : ""
+              }`}
               onClick={() => handleStatusClick(s)}
-              disabled={statuses.indexOf(s) < statuses.indexOf(status) || status === "resolved"}
+              disabled={
+                statuses.indexOf(s) < statuses.indexOf(status) ||
+                status === "resolved"
+              }
             >
               {s}
             </button>
-          ))
-        }
+          ))}
       </div>
 
       {showConfirm && (
         <div className={styles.modal}>
           <p>Are you sure you want to update the status to {selectedStatus}?</p>
-          <button onClick={updateStatus} className={styles.confirmButton}>Yes</button>
-          <button onClick={() => setShowConfirm(false)} className={styles.cancelButton}>No</button>
+          <button onClick={updateStatus} className={styles.confirmButton}>
+            Yes
+          </button>
+          <button
+            onClick={() => setShowConfirm(false)}
+            className={styles.cancelButton}
+          >
+            No
+          </button>
         </div>
       )}
 
@@ -172,12 +198,6 @@ const ApplicationContainer = ({ info,docId }) => {
     </div>
   );
 };
-
-
-
-
-
-
 
 export default DashBoard;
 
