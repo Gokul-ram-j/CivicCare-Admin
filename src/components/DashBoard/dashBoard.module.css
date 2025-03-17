@@ -40,6 +40,10 @@ body{
   font-weight: bold;
 }
 
+.location span{
+  font-weight: bold;
+}
+
 .dateTime {
   font-size: 12px;
   color: #777;

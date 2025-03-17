@@ -121,6 +121,9 @@ const ApplicationContainer = ({ info, docId }) => {
       <p className={styles.sender}>
         From: <span>{info.sender}</span>
       </p>
+      <p className={styles.location}>
+        Location: <span>{info.location}</span>
+      </p>
       <p className={styles.dateTime}>
         {info.date} | {info.time}
       </p>
